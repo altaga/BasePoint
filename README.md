@@ -38,7 +38,7 @@ It is important to mention that, according to the World Bank, 65% of Mexican adu
 
 # Solution
 
-BNBpoint is a Mobile-First wallet, cash out ramp and Point of Sale Superapp. We combine TradFi through Rapyd with Web3 to improve Financial Inclusion in Mexico and LATAM
+BasePoint is a Mobile-First wallet, cash out ramp and Point of Sale Superapp. We combine TradFi through Rapyd with Web3 to improve Financial Inclusion in Mexico and LATAM
 
 System's Architecture:
 
@@ -58,7 +58,9 @@ The transaction we do in the demo video is as follows.
 
 https://layerzeroscan.com/184/address/0xaf54be5b6eec24d6bfacf1cce4eaf680a8239398/message/111/address/0x701a95707a0290ac8b90b3719e8ee5b210360883/nonce/12853
 
-# Cross-chain Transfers:
+# Layer Zero - Cross-chain Transfers:
+
+<img src="https://i.ibb.co/RYmgrF3/image.png" width="33%">
 
 All transactions that require transfers from one chain to another we use the [Stargate Router Solidity Interface](https://stargateprotocol.gitbook.io/stargate/). Para mejorar la experiencia de pago y realizar transacciones sencillas con una wallet mobil se utilizo [WalletConnectV2](https://walletconnect.com/).
 
@@ -103,11 +105,19 @@ Ya que este protocolo de stargate es un protocolo DeFi y los bridges se realizan
 
 <img src="https://i.ibb.co/TPX73RT/Screenshot-20230812-165810.png" width="33%"> <img src="https://i.ibb.co/Qkhmdkr/Screenshot-20230812-165816.png" width="33%">
 
-# Point of Sale application:
+# Covalent - Balances and Transfers.
 
-- The Point of Sale application is focused on the simple reception of payments and an interface focused on generating payment orders through QR.
+<img src="https://i.ibb.co/8cXDrqq/image.png" width="33%">
 
-    <img src="https://i.ibb.co/jTYK6ZG/Screenshot-20230812-171346.png" width="32%">
+
+
+# Base -  Point of Sale application:
+
+<img src="https://i.ibb.co/GxzwwNB/image.png" width="33%">
+
+The Point of Sale application is focused on the simple reception of payments and an interface focused on generating payment orders through QR.
+
+<img src="https://i.ibb.co/jTYK6ZG/Screenshot-20230812-171346.png" width="32%">
 
 - The POS allows us to see the Crypto and Fiat balances received along with the list of transactions just like the Main App.
 
@@ -138,6 +148,10 @@ Ya que este protocolo de stargate es un protocolo DeFi y los bridges se realizan
 - Let's print!
 
     <img src="./Img/gifPrint.gif" width="32%">
+
+Todas las transacciones relizadas en base y las interacciones con el Router de Stargate en Base estan en el siguiente URL del base explorer.
+
+https://basescan.org/address/0x4cc9dbfc4beea8c986c61daabb350c2ec55e29d1
 
 # Current state and what's next
 
