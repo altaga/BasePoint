@@ -18,23 +18,20 @@ POS App APK: [LINK](./BasePointAPK/app-release.apk)
 
 # Introduction and Problem
 
-Almost 4 years ago Vitálik Buterin, co founder of Ethereum posted in twitter this message:
+Basepoint is perhaps the first built on Base, Optimism-powered, Superchain enabled Point of Sale platform for retail and businesses.
 
-<img src="https://i.ibb.co/ggfZWPD/vitalik.png">
+When we were deciding on what to hack for the superhack we asked ourselves…
 
-At that time it grabbed the attention of almost the entire crypto space and the answers regarding that question were mostly a big “Not many if at all”. Of course, there have been isolated projects that try to work with the developed world with several big names attached, but not to much avail. Cryptocurrencies and blockchain technology from that time onwards has mostly been used by a few early adopters and some others, but were mostly already banked, educated people, even in the developing world.
+Have we really Banked the unbanked and reached the final consumer in our Web3 Applications?
 
-Now, let’s ask that same question today; How many unbanked have we banked by the year 2021? Despite having made great progress and having outliers like the country of El Salvador, outside of that, the progress is almost null. Most of the same people that are into crypto today have been in for years and are the same elite, educated, previously banked ones, it has not reached those who are not.
+Or, are we just feeding developers and speculators?
 
-We can say that because our team lives in one of those developing countries that countless projects try to portray as a target for financial inclusion, which is Mexico.
+And that’s the main issue with Web3 at this moment. 
 
-And yes, Mexico is the perfect target as it is the largest issuer of remittances from the US and it will break $42Billion this year alone.
+But, if we take a look at the state of the technology even one year ago, we could not focus on anything else as the fees and the networks at that time were not really there.
 
-<img src="https://cdn.howmuch.net/articles/outgoing-remittances-usa-final-8374.jpg" width="400">
+Now the technology is there with rollups, AI and the Superchain enabling us to reach more.
 
-Of course, remembering that the US is the biggest sender of remittances in the world.
-
-It is important to mention that, according to the World Bank, 65% of Mexican adults do not have any type of bank account and only 10% save through a financial institution, in addition to the fact that 83% of Mexican adults do not have access to electronic payment systems. These circumstances limit the potential of the sector to place the resources of savers in productive projects that generate economic development and well-being for the population. And crypto is not doing better than the legacy system, most of the users are people like our team, tech savvy with a certain degree of education and already banked.
 
 # Solution
 
