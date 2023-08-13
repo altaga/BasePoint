@@ -109,7 +109,63 @@ Ya que este protocolo de stargate es un protocolo DeFi y los bridges se realizan
 
 <img src="https://i.ibb.co/8cXDrqq/image.png" width="33%">
 
+Todos los balances e historial de transacciones que obtenemos en la app son directamente de la API de Covalent, esto con el fin de obtener un update rapido de estos y mantener la app escalable en el tiempo cuando tengamos un gran volumen de usuarios.
 
+<img src="https://i.ibb.co/RBqqSgM/Screenshot-20230812-170915.png" width="32%">
+  <img src="https://i.ibb.co/1MzcJ2v/Screenshot-20230812-170920.png" width="32%">
+
+La seccion de codigo para obtener los balances generales es la siguiente.
+
+[CODE](./BasePoint/src/screens/cryptoAccount.js)
+
+    async getBalances() {
+        return new Promise(async (resolve, reject) => {
+            var myHeaders = new Headers();
+            myHeaders.append('Content-Type', 'application/json');
+            myHeaders.append('Authorization', `Basic ${btoa(covalentKey)}`);
+            var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow',
+            };
+            fetch(
+            `https://api.covalenthq.com/v1/${
+                NODE_ENV_NETWORKS[this.context.value.networkSelected].covalentID
+            }/address/${this.context.value.account}/balances_v2/?`,
+            requestOptions,
+            )
+            .then(response => response.json())
+            .then(result => resolve(result.data.items))
+            .catch(error => reject([]));
+        });
+    }
+
+La seccion de codigo para obtener la lista de transacciones generales es la siguiente.
+
+[CODE](./BasePoint/src/screens/cryptoAccountComponents/cryptoMainTransactions.js)
+
+    getTransactions() {
+        return new Promise((resolve, reject) => {
+        var myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', `Basic ${btoa(covalentKey)}`);
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow',
+        };
+        fetch(
+            `https://api.covalenthq.com/v1/${
+            NODE_ENV_NETWORKS[this.context.value.networkSelected].covalentID
+            }/address/${this.context.value.account}/transactions_v3/?`,
+            requestOptions,
+        )
+            .then(response => response.json())
+            .then(result => resolve(result.data.items))
+            .catch(error => reject([]));
+        });
+    }
 
 # Base -  Point of Sale application:
 

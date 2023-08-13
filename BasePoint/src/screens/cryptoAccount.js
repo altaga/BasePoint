@@ -33,7 +33,9 @@ import {
   NODE_ENV_CHAINLINK_FEED_CONTRACT,
   NODE_ENV_DATA_FEEDS_RCP,
   NODE_ENV_NETWORKS,
+  covalentKey,
 } from '../../env';
+import {ethers} from 'ethers';
 
 async function getUSD(array) {
   return new Promise((resolve, reject) => {
@@ -82,12 +84,25 @@ class CryptoAccount extends Component {
 
   static contextType = ContextModule;
 
-  async getBalanceToken(address, tokenAddress) {
+  async getBalances() {
     return new Promise(async (resolve, reject) => {
-      const contract = new this.web3.eth.Contract(abiERC20, tokenAddress);
-      let res = await contract.methods.balanceOf(address).call();
-      let decimals = await contract.methods.decimals().call();
-      resolve(res / Math.pow(10, decimals));
+      var myHeaders = new Headers();
+      myHeaders.append('Content-Type', 'application/json');
+      myHeaders.append('Authorization', `Basic ${btoa(covalentKey)}`);
+      var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow',
+      };
+      fetch(
+        `https://api.covalenthq.com/v1/${
+          NODE_ENV_NETWORKS[this.context.value.networkSelected].covalentID
+        }/address/${this.context.value.account}/balances_v2/?`,
+        requestOptions,
+      )
+        .then(response => response.json())
+        .then(result => resolve(result.data.items))
+        .catch(error => reject([]));
     });
   }
 
@@ -102,52 +117,52 @@ class CryptoAccount extends Component {
           modal: false,
         });
       // Native
-      this.web3.eth.getBalance(this.context.value.account).then(res => {
-        this.context.setValue({
-          ethBalance: this.web3.utils.fromWei(res, 'ether'),
-        });
-      });
+      const res = await this.getBalances();
+      const nativeData = res.filter(item => item.native_token === true)[0];
+      const ethUSD = nativeData.quote_rate;
+      const ethBalance = parseFloat(
+        ethers.utils.formatUnits(
+          nativeData.balance,
+          nativeData.contract_decimals,
+        ),
+      );
       // Tokens
+      const tokensData = res.filter(item => item.native_token === false);
+      let tokenBalances = {};
+      let tokenUSD = {};
       NODE_ENV_NETWORKS[
         this.context.value.networkSelected
       ].tokensContracts.forEach((item, index) => {
-        this.getBalanceToken(this.context.value.account, item).then(resp => {
-          let json = {};
-          json[
+        try {
+          const tokenInfo = tokensData.filter(
+            item2 =>
+              item.toLowerCase() === item2.contract_address.toLowerCase(),
+          )[0];
+          tokenBalances[
             NODE_ENV_NETWORKS[this.context.value.networkSelected].tokenNames[
               index
             ]
-          ] = resp;
-          this.context.setValue({
-            tokenBalances: {
-              ...this.context.value.tokenBalances,
-              ...json,
-            },
-          });
+          ] =
+            parseFloat(
+              ethers.utils.formatUnits(
+                tokenInfo?.balance ?? 0,
+                tokenInfo?.contract_decimals ?? 1,
+              ),
+            ) ?? 0;
+          tokenUSD[
+            NODE_ENV_NETWORKS[this.context.value.networkSelected].tokenNames[
+              index
+            ]
+          ] = tokenInfo?.quote_rate ?? 1;
+        } catch (e) {
+          // nothing
+        }
+        this.context.setValue({
+          ethBalance,
+          ethUSD,
+          tokenBalances,
+          tokenUSD,
         });
-      });
-      let array = [
-        NODE_ENV_NETWORKS[this.context.value.networkSelected].geckoNative,
-      ].concat(
-        NODE_ENV_NETWORKS[this.context.value.networkSelected].geckoTokens,
-      );
-      let results = await getUSD(array);
-      let ethUSD =
-        results[
-          NODE_ENV_NETWORKS[this.context.value.networkSelected].geckoNative
-        ].usd;
-      let tokenUSD = {};
-      NODE_ENV_NETWORKS[this.context.value.networkSelected].geckoTokens.map(
-        (item, index) =>
-          (tokenUSD[
-            NODE_ENV_NETWORKS[this.context.value.networkSelected].tokenNames[
-              index
-            ]
-          ] = results[item].usd),
-      );
-      this.context.setValue({
-        ethUSD,
-        tokenUSD,
       });
     });
     this.props.navigation.addListener('blur', () => {
@@ -167,12 +182,10 @@ class CryptoAccount extends Component {
       <>
         <View style={GlobalStyles.container}>
           <Header />
-          <View style={{position: 'absolute', top: 9, left: 18}}>
-            <Pressable
-              style={{alignSelf: 'center'}}
-              onPress={() =>
-                this.props.navigation.navigate('CryptoTransactions')
-              }>
+          <Pressable
+            onPress={() => this.props.navigation.navigate('CryptoTransactions')}
+            style={{position: 'absolute', top: 9, left: 18}}>
+            <View style={{alignSelf: 'center'}}>
               <IconMI
                 name="receipt-long"
                 size={24}
@@ -180,9 +193,9 @@ class CryptoAccount extends Component {
                   NODE_ENV_NETWORKS[this.context.value.networkSelected].color
                 }
               />
-            </Pressable>
+            </View>
             <Text style={{color: 'white'}}>Transactions</Text>
-          </View>
+          </Pressable>
           <View style={{position: 'absolute', top: 9, right: 18}}>
             <Pressable
               style={{alignSelf: 'center'}}

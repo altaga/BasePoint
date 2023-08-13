@@ -711,11 +711,28 @@ const colors = [
   '#00d5c7', //Metis
 ];
 
+// Covalent
+
+const covalentIDs = [
+  'base-mainnet', //Base
+  'eth-mainnet', //Ethereum
+  'avalanche-mainnet', //Avalanche
+  'bsc-mainnet', //BSC
+  'matic-mainnet', //Polygon
+  'arbitrum-mainnet', //Arbitrum
+  'optimism-mainnet', //Optimism
+  'fantom-mainnet', //Fantom
+  'metis-mainnet', //Metis
+];
+
+export const covalentKey = "cqt_XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
 // Blockchains
 
 export const NODE_ENV_NETWORKS = networkNames.map((item, index) => {
   return {
     name: item,
+    covalentID:covalentIDs[index],
     rpc: networksRPCs[index],
     chainId: chainIDS[index],
     stargateID: stargatesIDS[index],
