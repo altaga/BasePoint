@@ -59,11 +59,11 @@ https://layerzeroscan.com/184/address/0xaf54be5b6eec24d6bfacf1cce4eaf680a8239398
 
 <img src="https://i.ibb.co/RYmgrF3/image.png" width="33%">
 
-All transactions that require transfers from one chain to another we use the [Stargate Router Solidity Interface](https://stargateprotocol.gitbook.io/stargate/). Para mejorar la experiencia de pago y realizar transacciones sencillas con una wallet mobil se utilizo [WalletConnectV2](https://walletconnect.com/).
+For all transactions that require transfers from one chain to another we use the [Stargate Router Solidity Interface](https://stargateprotocol.gitbook.io/stargate/). To improve the payment experience and make simple transactions with a mobile wallet, we used [WalletConnectV2](https://walletconnect.com/).
 
 <img src="https://i.ibb.co/dfJv1S6/Screenshot-20230812-170711.png" width="32%"> <img src="https://i.ibb.co/1ZZyfRF/Screenshot-20230812-170716.png" width="32%"> <img src="https://i.ibb.co/tc71fpH/Screenshot-20230812-170723.png" width="32%">
 
-La implementacion en el codigo de nuetsra app es la siguiente.
+The implementation code for our app is the following:
 
 [CODE](./BasePoint/src/screens/walletConnectComp.js)
 
@@ -98,7 +98,7 @@ La implementacion en el codigo de nuetsra app es la siguiente.
         '0x', // payload
     );
 
-Ya que este protocolo de stargate es un protocolo DeFi y los bridges se realizan mediante transacciones a travez de pair pools, antes de realizar una transaccion crosschain tenemos que asegurarnos que el pair exista en la misma. Por eso es prefereible realizar pagos mediante stablecoins como USDC, ya que los pares de USDC y USDT existen en todas las redes. La app te indicara en el caso de no existir el pair.
+Since this stargate protocol is a DeFi protocol and the bridges are made through transactions through pair pools, before making a crosschain transaction we have to make sure that the pair exists in it. That is why it is preferable to make payments using stablecoins such as USDC, since USDC pairs exist in all networks. The app will tell you if the pair does not exist.
 
 <img src="https://i.ibb.co/TPX73RT/Screenshot-20230812-165810.png" width="33%"> <img src="https://i.ibb.co/Qkhmdkr/Screenshot-20230812-165816.png" width="33%">
 
@@ -106,11 +106,11 @@ Ya que este protocolo de stargate es un protocolo DeFi y los bridges se realizan
 
 <img src="https://i.ibb.co/8cXDrqq/image.png" width="33%">
 
-Todos los balances e historial de transacciones que obtenemos en la app son directamente de la API de Covalent, esto con el fin de obtener un update rapido de estos y mantener la app escalable en el tiempo cuando tengamos un gran volumen de usuarios.
+All the balances and transaction history that we obtain in the app are directly from the Covalent API, this in order to obtain a quick update of these and keep the app scalable over time when we have a large volume of users.
 
 <img src="https://i.ibb.co/RBqqSgM/Screenshot-20230812-170915.png" width="32%"> <img src="https://i.ibb.co/1MzcJ2v/Screenshot-20230812-170920.png" width="32%">
 
-La seccion de codigo para obtener los balances generales es la siguiente.
+The code section to obtain the general balances is the following.
 
 [CODE](./BasePoint/src/screens/cryptoAccount.js)
 
@@ -136,7 +136,7 @@ La seccion de codigo para obtener los balances generales es la siguiente.
         });
     }
 
-La seccion de codigo para obtener la lista de transacciones generales es la siguiente.
+The code section to obtain the list of general transactions is the following:
 
 [CODE](./BasePoint/src/screens/cryptoAccountComponents/cryptoMainTransactions.js)
 
@@ -181,7 +181,7 @@ The Point of Sale application is focused on the simple reception of payments and
 
   <img src="https://i.ibb.co/vXD3Hzf/image.png">
 
-- One of the most important processes is being able to make payments at the POS through [WalletConnectV2](https://walletconnect.com/), being this the pillar of our device. Tendremos que seleccionar la red origen que nos hara la transferencia y posteriormente el token que se usara para pagar, en este caso tenemos compatibilidad con todos los pares disponibles en [Stargate.finance](https://stargate.finance/), recomendamos USDC y USDT.
+- One of the most important processes is being able to make payments at the POS through [WalletConnectV2](https://walletconnect.com/), being this the pillar of our device. We will have to select the origin network that will make the transfer and later the token that will be used to pay, in this case we have compatibility with all the pairs available in [Stargate.finance](https://stargate.finance/), we recommend USDC.
 
     <img src="https://i.ibb.co/tHxvD6D/Screenshot-20230812-171509.png" width="32%"> 
     <img src="https://i.ibb.co/5jgXWC2/Screenshot-20230812-171513.png" width="32%"> 
@@ -197,42 +197,19 @@ The Point of Sale application is focused on the simple reception of payments and
 
   <img src="https://i.ibb.co/zPBzLp9/Screenshot-20230812-172539.png" width="32%">
 
-- Let's print!
+- Like this!
 
     <img src="./Img/gifPrint.gif" width="32%">
 
-Todas las transacciones relizadas en base y las interacciones con el Router de Stargate en Base estan en el siguiente URL del base explorer.
+All the transactions carried out in base and the interactions with the Stargate Router in Base are in the following URL of the base explorer.
 
 https://basescan.org/address/0x4cc9dbfc4beea8c986c61daabb350c2ec55e29d1
 
-# Current state and what's next
-
-This application is directed at those who cannot benefit directly from cryptocurrency. It has the usual, both crypto and fiat wallets, transfers between crypto and fiat, transfers between crypto accounts and it gives a spin on the cash in - cash out portion of the equation as no other project provides it. It is very important if this application is going to benefit and bank people to be very agile and compatible with FIAT at least until crypto reaches mass market. Most of the developed world has not even incorporated to legacy electronic systems. In addition to that the incorporation of a Point of Sale thought mainly for SMEs is something that can be key in augmenting the change for further adoption.
-
-I think we can make the jump from those systems almost directly to self-banking, such as the jump that was made in some parts of Africa and even here in Latin America from skipping telephone landlines directly to Mobile phones. If that jump was made from that type of technology this one can be analogous and possible.
-
-Perhaps the most important feedback we have obtained is that we have to show how our application will ensure the enforcement of anti-laundering laws.
-
-We will do that will strong KYC. And at the same time Mexico has published since 2018 strong laws to manage that including its fintech law.
-
-https://en.legalparadox.com/post/the-definitive-guide-mexican-fintech-law-a-look-3-years-after-its-publication#:~:text=The%20Mexican%20FinTech%20Law%20was,as%20Artificial%20Intelligence%2C%20Blockchain%2C%20collaborative
-
-Quoting: " The Mexican FinTech Law was one of the first regulatory bodies created specifically to promote innovation, the transformation of traditional banking and credit financial services that would even allow the possibility of incorporating exponential technology such as Artificial Intelligence, Blockchain, collaborative economies and peer-to-peer financial services in secure regulatory spaces. "
-
-All of this was a silent revolution that happened in this jurisdiction after the HSBC money-laundering scandal that included cartels and some other nefarious individuals.
-https://www.investopedia.com/stock-analysis/2013/investing-news-for-jan-29-hsbcs-money-laundering-scandal-hbc-scbff-ing-cs-rbs0129.aspx
-
-Thus, the need for Decentralized solutions.
-
-Security and identity verification of the clients who use the app is paramount for us, and to thrive in this market we need this to emulate incumbents such as Bitso. We think our technology is mature enough if we compare with these incumbents and much safer.
-
-Regarding the application we would like to test it with real Capital perhaps in Q2 2023.
-
-Hopefully you liked the Point of Sale Dapp.
+## Hopefully you liked the Point of Sale Dapp.
 
 # Team
 
-#### 3 Engineers with experience developing IoT and hardware solutions. We have been working together now for 5 years since University.
+#### 3 Engineers with experience developing IoT and hardware solutions. We have been working together now for 6 years since University.
 
 [<img src="https://img.shields.io/badge/Luis%20Eduardo-Arevalo%20Oliver-blue">](https://www.linkedin.com/in/luis-eduardo-arevalo-oliver-989703122/)
 
