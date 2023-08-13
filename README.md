@@ -111,8 +111,7 @@ Ya que este protocolo de stargate es un protocolo DeFi y los bridges se realizan
 
 Todos los balances e historial de transacciones que obtenemos en la app son directamente de la API de Covalent, esto con el fin de obtener un update rapido de estos y mantener la app escalable en el tiempo cuando tengamos un gran volumen de usuarios.
 
-<img src="https://i.ibb.co/RBqqSgM/Screenshot-20230812-170915.png" width="32%">
-  <img src="https://i.ibb.co/1MzcJ2v/Screenshot-20230812-170920.png" width="32%">
+<img src="https://i.ibb.co/RBqqSgM/Screenshot-20230812-170915.png" width="32%"> <img src="https://i.ibb.co/1MzcJ2v/Screenshot-20230812-170920.png" width="32%">
 
 La seccion de codigo para obtener los balances generales es la siguiente.
 
