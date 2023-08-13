@@ -35,7 +35,7 @@ Now the technology is there with rollups, AI and the Superchain enabling us to r
 
 # Solution
 
-BasePoint is a Mobile-First wallet, cash out ramp and Point of Sale Superapp. We combine TradFi through Rapyd with Web3 to improve Financial Inclusion in Mexico and LATAM
+BasePoint is a Base and Optimism-powered, Superchain and Layer Zero enabled Point of Sale platform for retail and businesses.
 
 System's Architecture:
 
